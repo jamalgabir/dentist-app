@@ -103,7 +103,7 @@ const AdminDashboard = () => {
     return (
         <div className="container">
             <Typography variant="h4" gutterBottom>Admin Dashboard</Typography>
-            {responseMessage && <Typography color="error">{responseMessage}</Typography>}
+            {responseMessage && <Typography color="primary">{responseMessage}</Typography>}
 
             {/* Upcoming Appointments Table */}
             <Typography variant="h6">Upcoming Appointments</Typography>
