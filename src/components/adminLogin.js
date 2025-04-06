@@ -21,7 +21,7 @@ const AdminLogin = () => {
         try {
             const response = await basurl.post('/api/admin/login', { email, password });
             localStorage.setItem('adminToken', response.data.token);
-            console.log(response.data.token)
+            
             navigate('/admin/dashboard');
         } catch (error) {
             console.log(error)

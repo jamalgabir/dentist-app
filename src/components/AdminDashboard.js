@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Checkbox, Button, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/Delete';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
+     Paper, Checkbox, Button, Typography, Dialog, DialogActions, DialogContent,
+      DialogContentText, DialogTitle, TextField } from '@mui/material';
+// import CheckCircleIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Delete';
-import baseUrl from "../api/index"
+import baseUrl from "../api/index";
+import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
     const [appointments, setAppointments] = useState([]);
@@ -37,7 +40,9 @@ const AdminDashboard = () => {
             });
             setAppointments(response.data);
         } catch (error) {
+        
             setResponseMessage('Error fetching appointments');
+            
         }
     };
 
@@ -51,7 +56,13 @@ const AdminDashboard = () => {
             );
             fetchAppointments(token);
         } catch (error) {
-            setResponseMessage('Error updating attendance');
+            if (error.response?.status === 401) {
+                localStorage.removeItem('adminToken');
+                navigate('/admin/login');
+            } else {
+                setResponseMessage('Error updating attendance');
+            }
+            
         }
     };
 
@@ -63,7 +74,13 @@ const AdminDashboard = () => {
             });
             fetchAppointments(token);
         } catch (error) {
-            setResponseMessage('Error cancelling appointment');
+            if (error.response?.status === 401) {
+                localStorage.removeItem('adminToken');
+                navigate('/admin/login');
+            } else {
+                setResponseMessage('Error cancelling appointment');
+            }
+            
         }
     };
 
@@ -84,7 +101,13 @@ const AdminDashboard = () => {
             setEditAppointment(null);
             fetchAppointments(token);
         } catch (error) {
-            setErrorMessage('Error updating appointment');
+            if (error.response?.status === 401) {
+                localStorage.removeItem('adminToken');
+                navigate('/admin/login');
+            } else {
+                setErrorMessage('Error updating appointment');
+            }
+            
         }
     };
 
@@ -131,7 +154,7 @@ const AdminDashboard = () => {
                                     <Button color="primary" onClick={() => handleEdit(appointment)}>
                                         Edit
                                     </Button>
-                                    <Button color="secondary" startIcon={<CancelIcon />} onClick={() => handleCancel(appointment._id)}>
+                                    <Button color="error" startIcon={<CancelIcon />} onClick={() => handleCancel(appointment._id)}>
                                         Cancel
                                     </Button>
                                 </TableCell>
@@ -167,13 +190,13 @@ const AdminDashboard = () => {
                                 <TableCell>
                                     <Checkbox
                                         checked={appointment.attended}
-                                        icon={<CancelIcon />}
-                                        checkedIcon={<CheckCircleIcon />}
+                                        
+                                        
                                         onChange={() => handleAttendance(appointment._id, !appointment.attended)}
                                     />
                                 </TableCell>
                                 <TableCell>
-                                    <Button color="secondary" startIcon={<CancelIcon />} onClick={() => handleCancel(appointment._id)}>
+                                    <Button color="error" startIcon={<CancelIcon />} onClick={() => handleCancel(appointment._id)}>
                                         Cancel
                                     </Button>
                                 </TableCell>
