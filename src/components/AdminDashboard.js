@@ -143,7 +143,7 @@ const AdminDashboard = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {upcomingAppointments.map((appointment) => (
+                        {upcomingAppointments.length?upcomingAppointments.map((appointment) => (
                             <TableRow key={appointment._id}>
                                 <TableCell>{appointment.patientName}</TableCell>
                                 <TableCell>{appointment.email}</TableCell>
@@ -159,7 +159,7 @@ const AdminDashboard = () => {
                                     </Button>
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )):<TableRow style={{textAlign:"center",alignItems:"center",justifyContent:"center"}}><h1>No appointments</h1></TableRow>}
                     </TableBody>
                 </Table>
             </TableContainer>
