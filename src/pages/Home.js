@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <>
+        <main className="main-content">
             <section className="hero">
                 <div className="hero-content">
                     <h1>Welcome to DentistSmiles</h1>
@@ -30,6 +30,24 @@ const Home = () => {
                 </div>
             </section>
 
+            <section className="gallery">
+                <h2>Our Facility</h2>
+                <div className="gallery-grid">
+                    <div className="gallery-item">
+                        <img src="https://images.pexels.com/photos/3779709/pexels-photo-3779709.jpeg" alt="Modern dental clinic" />
+                    </div>
+                    <div className="gallery-item">
+                        <img src="https://images.pexels.com/photos/3845625/pexels-photo-3845625.jpeg" alt="Dental treatment room" />
+                    </div>
+                    <div className="gallery-item">
+                        <img src="https://images.pexels.com/photos/3845741/pexels-photo-3845741.jpeg" alt="Dental equipment" />
+                    </div>
+                    <div className="gallery-item">
+                        <img src="https://images.pexels.com/photos/3845623/pexels-photo-3845623.jpeg" alt="Consultation room" />
+                    </div>
+                </div>
+            </section>
+
             <section className="testimonials">
                 <h2>Patient Testimonials</h2>
                 <div className="testimonial-grid">
@@ -47,7 +65,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-        </>
+        </main>
     );
 };
 
