@@ -5,6 +5,7 @@
   --accent: #e74c3c;
   --light: #f8f9fa;
   --dark: #2c3e50;
+  --hover-color: #4CAF50; /* New hover color */
 }
 
 body {
@@ -63,7 +64,7 @@ nav {
 }
 
 .nav-links li a:hover {
-  color: var(--primary);
+  color: var(--hover-color);
 }
 
 .btn-appointment {
@@ -89,8 +90,8 @@ nav {
 
 .hamburger {
   display: block;
-  width: 24px;
-  height: 2px;
+  width: 30px; /* Increased width */
+  height: 3px; /* Increased height */
   background: var(--dark);
   position: relative;
   transition: all 0.3s ease-in-out;
@@ -100,18 +101,18 @@ nav {
 .hamburger::after {
   content: '';
   position: absolute;
-  width: 24px;
-  height: 2px;
+  width: 30px; /* Increased width */
+  height: 3px; /* Increased height */
   background: var(--dark);
   transition: all 0.3s ease-in-out;
 }
 
 .hamburger::before {
-  transform: translateY(-8px);
+  transform: translateY(-10px); /* Adjusted spacing */
 }
 
 .hamburger::after {
-  transform: translateY(8px);
+  transform: translateY(10px); /* Adjusted spacing */
 }
 
 .hamburger.active {
