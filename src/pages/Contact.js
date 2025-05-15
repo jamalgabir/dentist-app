@@ -14,6 +14,7 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         alert('Your message has been sent! We will get back to you shortly.');
+        // Integrate API for sending message if needed
     };
 
     return (

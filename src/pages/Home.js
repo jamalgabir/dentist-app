@@ -20,6 +20,36 @@ const Home = () => {
                 </Link>
             </section>
 
+            <section className="gallery">
+                <h2>Our Facility</h2>
+                <div className="gallery-grid">
+                    <div className="gallery-item">
+                        <img src="https://images.pexels.com/photos/3779709/pexels-photo-3779709.jpeg" alt="Modern dental office" />
+                        <div className="gallery-overlay">
+                            <p>State-of-the-art Equipment</p>
+                        </div>
+                    </div>
+                    <div className="gallery-item">
+                        <img src="https://images.pexels.com/photos/3845625/pexels-photo-3845625.jpeg" alt="Treatment room" />
+                        <div className="gallery-overlay">
+                            <p>Comfortable Treatment Rooms</p>
+                        </div>
+                    </div>
+                    <div className="gallery-item">
+                        <img src="https://images.pexels.com/photos/3845741/pexels-photo-3845741.jpeg" alt="Dental tools" />
+                        <div className="gallery-overlay">
+                            <p>Advanced Dental Tools</p>
+                        </div>
+                    </div>
+                    <div className="gallery-item">
+                        <img src="https://images.pexels.com/photos/3845733/pexels-photo-3845733.jpeg" alt="Waiting area" />
+                        <div className="gallery-overlay">
+                            <p>Welcoming Reception</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section className="testimonials">
                 <h2>What Our Patients Say</h2>
                 <div className="testimonial-grid">
