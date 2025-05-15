@@ -4,7 +4,6 @@ import BookingForm from '../components/BookingForm';
 const Booking = () => {
     return (
         <section>
-           
             <BookingForm />
         </section>
     );

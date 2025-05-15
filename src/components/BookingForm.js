@@ -1,117 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import BasUlr from "../api/index"
+import React, { useState } from 'react';
+
 const BookingForm = () => {
-    const [availableSlots, setAvailableSlots] = useState([]);
-    const [selectedSlot, setSelectedSlot] = useState('');
-    const [patientName, setPatientName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');  // New state for phone number
-    const [serviceType, setServiceType] = useState('');  // New state for service type
-    const [responseMessage, setResponseMessage] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        date: '',
+        service: ''
+    });
 
-    useEffect(() => {
-        fetchAvailableSlots();
-    }, []);
-
-    const fetchAvailableSlots = async () => {
-        try {
-            const response = await BasUlr.get('/api/available-slots');
-            setAvailableSlots(response.data.slots);
-        } catch (error) {
-            console.error('Error fetching available slots:', error);
-            setResponseMessage('Error fetching available slots. Please try again later.');
-        }
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleBooking = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            await BasUlr.post('/api/book-appointment', {
-                date: selectedSlot,
-                patientName,
-                email,
-                phone,  // New field: phone number
-                serviceType,  // New field: service type
-            });
-            setResponseMessage('Appointment booked successfully!');
-            // Reset form fields
-            setPatientName('');
-            setEmail('');
-            setPhone('');
-            setServiceType('');
-            setSelectedSlot('');
-            fetchAvailableSlots(); // Refresh available slots after booking
-        } catch (error) {
-            console.error('Error booking appointment:', error);
-            setResponseMessage('Error booking appointment: ' + error.response.data.message);
-        }
+        alert('Appointment request received! We will contact you shortly to confirm.');
     };
 
     return (
         <div>
             <h2>Book an Appointment</h2>
-            {responseMessage && <p className="response-message">{responseMessage}</p>}
-
-            <form onSubmit={handleBooking}>
-                <label htmlFor="slots">Choose an available slot:</label>
-                <select
-                    id="slots"
-                    value={selectedSlot}
-                    onChange={(e) => setSelectedSlot(e.target.value)}
-                    required
-                >
-                    <option value="" disabled>Select an available slot</option>
-                    {availableSlots.length > 0 ? (
-                        availableSlots.map((slot) => (
-                            <option key={slot} value={slot}>
-                                {new Date(slot).toLocaleString()}
-                            </option>
-                        ))
-                    ) : (
-                        <option value="" disabled>No slots available</option>
-                    )}
-                </select>
-
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    placeholder="Patient Name"
-                    value={patientName}
-                    onChange={(e) => setPatientName(e.target.value)}
+                    name="name"
+                    placeholder="Your Name"
+                    onChange={handleChange}
                     required
                 />
-
                 <input
                     type="email"
-                    placeholder="Patient Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    name="email"
+                    placeholder="Your Email"
+                    onChange={handleChange}
                     required
                 />
-
-                {/* New Phone Input */}
                 <input
                     type="tel"
+                    name="phone"
                     placeholder="Phone Number"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={handleChange}
                     required
                 />
-
-                {/* New Service Type Input */}
-                <label htmlFor="serviceType">Service Type:</label>
                 <select
-                    id="serviceType"
-                    value={serviceType}
-                    onChange={(e) => setServiceType(e.target.value)}
+                    name="service"
+                    onChange={handleChange}
                     required
                 >
-                    <option value="" disabled>Select a service</option>
-                    <option value="Cleaning">Cleaning</option>
-                    <option value="Root Canal">Root Canal</option>
-                    <option value="Check-up">Check-up</option>
-                    <option value="Whitening">Teeth Whitening</option>
+                    <option value="">Select Service</option>
+                    <option value="cleaning">Cleaning</option>
+                    <option value="checkup">Check-up</option>
+                    <option value="whitening">Teeth Whitening</option>
+                    <option value="rootcanal">Root Canal</option>
                 </select>
-
+                <input
+                    type="datetime-local"
+                    name="date"
+                    onChange={handleChange}
+                    required
+                />
                 <button type="submit">Book Appointment</button>
             </form>
         </div>

@@ -8,7 +8,6 @@ const AboutUs = () => {
             <h2>Meet Our Team</h2>
             <p>Dr. John Doe, DDS - Lead Dentist</p>
             <p>Dr. Jane Smith, DDS - Orthodontist</p>
-            {/* Add more team details and images here */}
         </section>
     );
 };
