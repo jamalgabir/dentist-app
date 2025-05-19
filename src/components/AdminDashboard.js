@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
-    Paper, Button, Typography, Dialog, DialogActions, DialogContent,
+    Button, Typography, Dialog, DialogActions, DialogContent,
     DialogTitle, TextField, CircularProgress, Box, Chip
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -274,7 +274,6 @@ const AdminDashboard = () => {
                 <DialogTitle>Edit Appointment</DialogTitle>
                 <DialogContent>
                     {errorMessage && <Typography color="error">{errorMessage}</Typography>}
-                    }
                     {editAppointment && (
                         <>
                             <TextField
