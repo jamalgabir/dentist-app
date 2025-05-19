@@ -1,131 +1,172 @@
 /* AdminDashboard.css */
-
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    margin: 0;
-    padding: 0;
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-    margin-top: 20px;
-}
-
 .container {
     max-width: 1200px;
-    min-height: 500px;
     margin: 0 auto;
     padding: 20px;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Response Message Styling */
-.response-message {
-    background-color: #e0f7fa;
-    color: #00796b;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    text-align: center;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #2196f3;
+.dashboard-header {
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
     color: white;
-    font-weight: bold;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.5s ease-in-out;
 }
 
-td {
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.table-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: slideUp 0.5s ease-in-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.MuiTable-root {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.MuiTableHead-root {
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+}
+
+.MuiTableCell-head {
+    color: white !important;
+    font-weight: bold !important;
+    padding: 16px !important;
+}
+
+.MuiTableRow-root {
+    transition: background-color 0.3s ease;
+}
+
+.MuiTableRow-root:hover {
+    background-color: #f5f9ff !important;
+}
+
+.MuiTableCell-body {
+    padding: 16px !important;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.MuiButton-root {
+    text-transform: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.MuiButton-root:hover {
+    transform: translateY(-2px);
+}
+
+.edit-dialog {
+    animation: scaleIn 0.3s ease-in-out;
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.MuiTextField-root {
+    margin: 10px 0 !important;
+}
+
+.status-chip {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-upcoming {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.status-completed {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.empty-state h3 {
+    margin-bottom: 10px;
     color: #333;
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Buttons */
-button {
-    background-color: #f44336; /* Red color */
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-}
-
-/* Form Styles */
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-input, select {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-button[type="submit"] {
-    background-color: #4caf50; /* Green color for submission */
-}
-
-button[type="submit"]:hover {
-    background-color: #388e3c; /* Darker green on hover */
-}
-/* AdminDashboard.css */
-.cancel-button {
-    background-color: #ff5252;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.cancel-button:hover {
-    background-color: #e53935;
-}
-
-.response-message {
-    margin-top: 15px;
-    font-size: 16px;
-    color: green;
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-header {
+        padding: 20px;
+    }
+    
+    .MuiTableCell-root {
+        padding: 12px !important;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
 }
