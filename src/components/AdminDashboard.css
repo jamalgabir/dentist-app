@@ -79,8 +79,11 @@
     transition: background-color 0.3s ease;
 }
 
+/* Updated hover colors for both tables */
 .MuiTableRow-root:hover {
-    background-color: #f5f9ff !important;
+    background-color: #e8f4ff !important; /* Lighter blue hover color */
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(33, 147, 176, 0.1);
 }
 
 .MuiTableCell-body {
