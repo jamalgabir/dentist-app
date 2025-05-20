@@ -38,6 +38,7 @@ const AdminLogin = () => {
                 </div>
 
                 {errorMessage && <div className="error-message">{errorMessage}</div>}
+                }
 
                 <form className="login-form" onSubmit={handleLogin}>
                     <div className="form-group">
