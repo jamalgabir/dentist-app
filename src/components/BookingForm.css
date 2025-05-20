@@ -2,18 +2,26 @@
     padding: 2rem;
     max-width: 800px;
     margin: 0 auto;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .booking-content {
     background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .booking-subtitle {
     color: #666;
     margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 .booking-form {
@@ -26,64 +34,148 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    animation: slideUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+.form-group:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .form-group label {
-    font-weight: 500;
+    font-weight: 600;
     color: #333;
+    font-size: 1rem;
+    transition: color 0.3s ease;
 }
 
 .form-group input,
 .form-group select {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 1rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
     font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
     border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    background: white;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #4a90e2;
 }
 
 .submit-button {
-    background: #4a90e2;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
     color: white;
     padding: 1rem;
     border: none;
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .submit-button:hover {
-    background: #357abd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.submit-button:active {
+    transform: translateY(1px);
 }
 
 .submit-button:disabled {
     background: #ccc;
     cursor: not-allowed;
+    transform: none;
 }
 
 .submit-button.loading {
     opacity: 0.8;
 }
 
+.submit-button.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    from { left: -100%; }
+    to { left: 100%; }
+}
+
 .response-message {
     padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
     text-align: center;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .response-message.success {
     background: #e6f4ea;
     color: #1e4620;
+    border: 1px solid #a8e6c1;
 }
 
 .response-message.error {
     background: #fce8e6;
     color: #c53929;
+    border: 1px solid #f6ccc7;
+}
+
+@media (max-width: 768px) {
+    .booking-container {
+        padding: 1rem;
+    }
+    
+    .booking-content {
+        padding: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        padding: 0.75rem;
+    }
+    
+    .submit-button {
+        padding: 0.75rem;
+    }
 }

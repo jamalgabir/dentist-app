@@ -274,7 +274,6 @@ const AdminDashboard = () => {
                 <DialogTitle>Edit Appointment</DialogTitle>
                 <DialogContent>
                     {errorMessage && <Typography color="error">{errorMessage}</Typography>}
-                    }
                     {editAppointment && (
                         <>
                             <TextField
