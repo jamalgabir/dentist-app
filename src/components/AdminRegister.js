@@ -49,6 +49,7 @@ const AdminRegister = () => {
                 </div>
 
                 {errorMessage && <div className="error-message">{errorMessage}</div>}
+                }
 
                 <form className="register-form" onSubmit={handleRegister}>
                     <div className="form-group">
