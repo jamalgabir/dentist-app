@@ -1,0 +1,150 @@
+.register-container {
+    min-height: calc(100vh - 276px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.register-box {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.register-header h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.register-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    animation: slideUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
+.form-group input {
+    padding: 1rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    background: white;
+}
+
+.form-group input:hover {
+    border-color: #4a90e2;
+}
+
+.register-button {
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.register-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.register-button:active {
+    transform: translateY(1px);
+}
+
+.error-message {
+    background: #fce8e6;
+    color: #c53929;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid #f6ccc7;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .register-container {
+        padding: 1rem;
+    }
+    
+    .register-box {
+        padding: 1.5rem;
+    }
+    
+    .register-header h2 {
+        font-size: 1.75rem;
+    }
+    
+    .form-group input {
+        padding: 0.75rem;
+    }
+    
+    .register-button {
+        padding: 0.75rem;
+    }
+}

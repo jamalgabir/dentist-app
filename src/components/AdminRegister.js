@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import basurl from "../api/index";
+import './AdminRegister.css';
 
-import basurl from "../api/index"
 const AdminRegister = () => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        secretKey: ''
+    });
     const [errorMessage, setErrorMessage] = useState('');
-    const [secretKey, setSecretKey] = useState(''); // Secret key for registration
-    const [name, setName] = useState('');
 
     useEffect(() => {
         const token = localStorage.getItem('adminToken');
@@ -17,55 +20,94 @@ const AdminRegister = () => {
         }
     }, [navigate]);
 
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
     const handleRegister = async (e) => {
         e.preventDefault();
+        setErrorMessage('');
 
         try {
-            const response = await basurl.post('/api/admin/register', { name,email, password,secretKey });
+            const response = await basurl.post('/api/admin/register', formData);
             localStorage.setItem('adminToken', response.data.token);
-
             navigate('/admin/dashboard');
         } catch (error) {
-            setErrorMessage('Error registering admin');
+            setErrorMessage('Registration failed. Please check your details.');
         }
     };
 
     return (
         <div className="register-container">
-            <h2>Admin Register</h2>
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <div className="register-box">
+                <div className="register-header">
+                    <h2>Create Account</h2>
+                    <p>Register as an administrator</p>
+                </div>
 
-            <form style={{width:"auto"}} onSubmit={handleRegister}>
-            <input
-                    type="text"
-                    placeholder="Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Secret Key"
-                    value={secretKey}
-                    onChange={(e) => setSecretKey(e.target.value)}
-                    required
-                />
-                <button type="submit">Register</button>
-            </form>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
+
+                <form className="register-form" onSubmit={handleRegister}>
+                    <div className="form-group">
+                        <label htmlFor="name">Full Name</label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="Enter your full name"
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="email">Email Address</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Enter your email"
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Create a password"
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="secretKey">Admin Secret Key</label>
+                        <input
+                            id="secretKey"
+                            name="secretKey"
+                            type="password"
+                            value={formData.secretKey}
+                            onChange={handleChange}
+                            placeholder="Enter admin secret key"
+                            required
+                        />
+                    </div>
+
+                    <button type="submit" className="register-button">
+                        Create Account
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
